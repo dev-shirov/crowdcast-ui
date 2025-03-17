@@ -1,12 +1,9 @@
 import './assets/main.css'
 
 import { createApp } from 'vue'
-import PrimeVue from 'primevue/config';
+import naive from "naive-ui";
 import App from './App.vue'
 
-const app = createApp(App).mount('#app')
-app.use(PrimeVue, {
-    theme: {
-        preset: Aura
-    }
-});
+const app = createApp(App)
+app.use(naive);
+app.mount("#app");

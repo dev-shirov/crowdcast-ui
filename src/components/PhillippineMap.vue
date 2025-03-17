@@ -1,8 +1,8 @@
 <template>
     <div id="map" style="height: 600px; width: 100%;"></div>
-  </template>
+</template>
   
-  <script>
+<script>
   import L from 'leaflet';
   import 'leaflet/dist/leaflet.css';
   import axios from 'axios';
@@ -13,7 +13,6 @@
       return {
         map: null,
         geojson: null,
-        marker: null,
       };
     },
     mounted() {
@@ -24,7 +23,6 @@
       initMap() {
         // Initialize the map centered on the Philippines
         this.map = L.map('map').setView([11.8166, 122.0942], 9);
-  
         // Add a tile layer (OpenStreetMap)
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           attribution: '© OpenStreetMap contributors',
