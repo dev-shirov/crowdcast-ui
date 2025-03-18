@@ -1,6 +1,5 @@
 <script setup>
 import LocationForm from './components/LocationForm.vue'
-import TheWelcome from './components/TheWelcome.vue'
 import PHMap from './components/PhillippineMap.vue'
 </script>
 
@@ -12,7 +11,6 @@ import PHMap from './components/PhillippineMap.vue'
   </header>
 
   <main>
-    <!-- <TheWelcome /> -->
     <PHMap />
   </main>
 </template>
@@ -28,10 +26,5 @@ header {
     place-items: center;
     padding-right: calc(var(--section-gap) / 2);
   }
-  /* header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  } */
 }
 </style>
