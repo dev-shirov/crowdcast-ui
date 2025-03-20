@@ -6,13 +6,14 @@
   import L from 'leaflet';
   import 'leaflet/dist/leaflet.css';
   import axios from 'axios';
-import { geoJSON } from 'leaflet';
-  
+  import { geoJSON } from 'leaflet';
+
   export default {
     name: 'ChoroplethMap',
     data() {
       return {
         map: null,
+        mapPin: null,
         geojson: null,
       };
     },
@@ -20,6 +21,7 @@ import { geoJSON } from 'leaflet';
       this.initMap();
       this.loadGeoJSON();
     },
+    expose: ['updateMap'],
     methods: {
       initMap() {
         // Initialize the map centered on the Philippines
@@ -28,10 +30,10 @@ import { geoJSON } from 'leaflet';
         //   .bindPopup('Manila, Philippines')
         //   .openPopup();
         
-        this.map = L.map('map').setView([11.9674, 121.9248], 13);
-        L.marker([11.9674, 121.9248]).addTo(this.map)
-          .bindPopup('Boracay Island, Philippines')
-          .openPopup();
+        this.map = L.map('map').setView([14.5995, 120.9842], 5);
+        this.mapPin = L.marker([14.5995, 120.9842]).bindPopup('Manila, Philippines');
+
+        this.mapPin.addTo(this.map).openPopup();
        
         // Add a tile layer (OpenStreetMap)
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -92,6 +94,14 @@ import { geoJSON } from 'leaflet';
         `;
         layer.bindPopup(popupContent);
       },
+      updateMap(location) {
+        // TODO: update based on the pased location
+        this.map.flyTo([11.9674, 121.9248], 13);
+        this.mapPin.removeFrom(this.map);
+        this.mapPin = L.marker([11.9674, 121.9248]).bindPopup('Boracay Island, Philippines');
+
+        this.mapPin.addTo(this.map).openPopup();
+      }
     },
   };
   </script>

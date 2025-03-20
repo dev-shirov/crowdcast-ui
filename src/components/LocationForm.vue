@@ -11,22 +11,23 @@ export default defineComponent({
           value: 'Aklan',
           children: [
             {
-              label: 'Malay',
-              value: 'Malay',
-              children: [
-                {
-                  label: 'Boracay Island',
-                  value: 'Boracay Island'
-                },
-                {
-                  label: 'Cove Island',
-                  value: 'Cove Island'
-                }
-              ]
+              label: 'Boracay Island',
+              value: 'Boracay Island',
             },
           ]
         }
       ])
+    }
+  },
+  emits: {
+    click: null,
+    updateMap: (value) => {
+      if (value) {
+        return true
+      }
+      else {
+        return false
+      }
     }
   }
 })
@@ -40,7 +41,7 @@ export default defineComponent({
     <n-divider />
     <n-space vertical :style="{ paddingTop: '10%' }">
       <n-input-group>
-        <n-cascader :style="{ width: '50%' }" :options="cascaderOptions" size="large"/>
+        <n-cascader :style="{ width: '50%' }" :options="cascaderOptions" size="large" v-model:value="value" @update:value="$emit('updateMap', value)"/>
         <n-date-picker :style="{ width: '50%' }" size="large"/>
       </n-input-group>
 
