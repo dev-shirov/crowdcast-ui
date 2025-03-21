@@ -4,6 +4,7 @@ import { defineComponent, ref } from 'vue'
 export default defineComponent({
   setup() {
     return {
+      showRecommendation: true,
       cascaderOptions: ref([
         {
           label: 'Aklan',
@@ -136,6 +137,12 @@ export default defineComponent({
       ])
     }
   },
+  methods: {
+    toggleFeed() {
+      console.log("asdasd");
+      this.showRecommendation = !this.showRecommendation;
+    }
+  },
   emits: {
     click: null,
     updateMap: (value) => {
@@ -151,49 +158,57 @@ export default defineComponent({
 </script>
 
 <template>
-  <n-card size="huge" hoverable>
+  <n-card class="form" size="huge" hoverable>
     <template #cover>
       <img class="n-card-img-banner" src="/crowdcast-banner.png">
     </template>
-    <!-- <n-divider /> -->
+    <n-divider />
     <n-space vertical>
       <n-input-group>
-        <n-cascader placeholder="Select location" :style="{ width: '100%', padding: '5px' }" :options="cascaderOptions" size="large" v-model:value="value" />  <!--ONMAPCHANGE: @update:value="$emit('updateMap', value)" -->
-        <n-select placeholder="Select month" :style="{ width: '100%', padding: '5px' }" :options="selectOptions" size="large"/>
-        <n-select placeholder="Select activity" :style="{ width: '100%', padding: '5px' }" :options="activityOptions" size="large"/>
-        <n-button type="info" size="large" :style="{ width: '20%', padding: '10px', marginTop: '5px' }" @click="$emit('updateMap', value)">
-          Submit
-        </n-button>
+        <n-cascader placeholder="Select location" :style="{ width: '100%' }" :options="cascaderOptions" size="large" v-model:value="value" />  <!--ONMAPCHANGE: @update:value="$emit('updateMap', value)" -->
       </n-input-group>
      
-      <!-- <n-input-group>
+      <n-input-group>
         <n-select placeholder="Select month" :style="{ width: '100%' }" :options="selectOptions" size="large"/>
       </n-input-group>
 
       <n-input-group>
         <n-select placeholder="Select activity" :style="{ width: '100%' }" :options="activityOptions" size="large"/>
-      </n-input-group> -->
+      </n-input-group>
 
-      <!-- <n-input-group :style="{ paddingTop: '5%' }">
+      <n-input-group :style="{ paddingTop: '5%' }">
         <n-button type="info" size="large" :style="{ width: '100%' }" @click="$emit('updateMap', value)">
           Submit
         </n-button>
-      </n-input-group> -->
+      </n-input-group>
     </n-space>
-   
+  </n-card>
+
+  <n-card title="Recommendations" v-if="showRecommendation" class="feed" size="huge" hoverable>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dolor ligula, varius et magna id, tempus molestie nibh. 
+    In non hendrerit ante. Sed faucibus, elit sed laoreet euismod, arcu turpis sodales urna, a bibendum orci dolor eget mauris. 
+    
   </n-card>
 </template>
 
 <style scoped>
-.n-card {
-  max-width: 1024px;
-  max-height: 200px;
+.form {
+  width: 450px;
+  height: 500px;
+  margin-top: 20px;
+  position: relative;
 }
 
-.n-card-img-banner {
-  max-height: 300px;
-  max-width: 200px;
-  padding-left: 40px;
-  padding-top: 20px;
+.n-input-group {
+  padding-top: 15px;
 }
+
+.feed {
+  width: 450px;
+  height: 270px;
+  margin-top: 20px;
+  position: absolute;
+  margin-top: 550px;
+}
+
 </style>
