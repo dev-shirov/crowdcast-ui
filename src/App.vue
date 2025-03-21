@@ -14,11 +14,12 @@ function mapChanged(value) {
 <template>
   <header>
     <div class="wrapper">
-      <LocationForm @update-map="mapChanged"/>
+      
     </div>
   </header>
 
   <main>
+    <LocationForm @update-map="mapChanged"/>
     <PHMap ref="phmap"/>
   </main>
 </template>

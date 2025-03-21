@@ -1,12 +1,11 @@
 <template>
-    <div id="map" style="height: 600px; width: 100%;"></div>
+    <div id="map" style="height: 800px; width: 900px;"></div>
 </template>
   
 <script>
   import L from 'leaflet';
   import 'leaflet/dist/leaflet.css';
   import axios from 'axios';
-  import { geoJSON } from 'leaflet';
 
   export default {
     name: 'ChoroplethMap',
@@ -19,36 +18,25 @@
     },
     mounted() {
       this.initMap();
-      this.loadGeoJSON();
     },
     expose: ['updateMap'],
     methods: {
       initMap() {
         // Initialize the map centered on the Philippines
-        // this.map = L.map('map').setView([14.5995, 120.9842], 5);
-        // L.marker([14.5995, 120.9842]).addTo(this.map)
-        //   .bindPopup('Manila, Philippines')
-        //   .openPopup();
-        
         this.map = L.map('map').setView([14.5995, 120.9842], 5);
         this.mapPin = L.marker([14.5995, 120.9842]).bindPopup('Manila, Philippines');
-
         this.mapPin.addTo(this.map).openPopup();
-       
         // Add a tile layer (OpenStreetMap)
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           attribution: '© OpenStreetMap contributors',
         }).addTo(this.map);
-        
-       
       },
-      async loadGeoJSON() {
+      async loadGeoJSON(location) {
         try {
           const response = await axios.get('./philippines.geojson');
           const geojsonData = response.data;
-
           geojsonData.features.forEach(element => {
-            if (element.properties.ISLAND3 === "Boracay Island") {
+            if (element.properties.OBJECTID === location.id) {
               this.geojson = L.geoJSON(element, {
                 style: this.getStyle,
                 onEachFeature: this.onEachFeature, 
@@ -61,17 +49,14 @@
         }
       },
       getStyle(feature) {
-          //if (feature.properties.ISLAND3 == "Boracay Island") {
-            const population = feature.properties.TOTPOP2000;
-            return {
-              fillColor: this.getColor(population),
-              weight: 1,
-              opacity: 1,
-              color: 'white',
-              fillOpacity: 0.7,
-            };
-          //}
-          
+        const population = feature.properties.TOTPOP2000;
+        return {
+          fillColor: this.getColor(population),
+          weight: 1,
+          opacity: 1,
+          color: 'white',
+          fillOpacity: 0.7,
+        };
       },
       getColor(population) {
         return population > 25000
@@ -96,10 +81,10 @@
       },
       updateMap(location) {
         // TODO: update based on the pased location
-        this.map.flyTo([11.9674, 121.9248], 13);
+        this.loadGeoJSON(location);
+        this.map.flyTo([location.lat, location.long], location.zoom);
         this.mapPin.removeFrom(this.map);
-        this.mapPin = L.marker([11.9674, 121.9248]).bindPopup('Boracay Island, Philippines');
-
+        this.mapPin = L.marker([location.lat, location.long]).bindPopup(location.name);
         this.mapPin.addTo(this.map).openPopup();
       }
     },
