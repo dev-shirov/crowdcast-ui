@@ -1,41 +1,36 @@
-<script setup>
-import LocationForm from './components/LocationForm.vue'
-import PHMap from './components/PhillippineMap.vue'
-import { useTemplateRef } from 'vue'
 
-const mapRef = useTemplateRef('phmap')
-
-function mapChanged(value) {
-  mapRef.value.updateMap(value)
-}
-
+<script>
+  import Home from './views/Home.vue'
 </script>
 
 <template>
-
-  <n-flex justify="center">
-    <div class="wrapper">
-      <LocationForm @update-map="mapChanged"/>
-      <PHMap ref="phmap"/>
-    </div>
-
-  </n-flex>
-       
-
-  <!-- <main>
-  </main> -->
+  <header>
+  </header>
+  <main>
+    <router-view />
+  </main>
 </template>
 
-<style scoped>
-header {
-  line-height: 2.5;
-}
-
-@media (min-width: 1024px) {
-  .wrapper {
-    display: flex;
-    /* place-items: center; */
-    /* padding-right: calc(var(--section-gap) / 2); */
+<style>
+  #app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
   }
-}
+
+  nav {
+    padding: 20px;
+  }
+
+  nav a {
+    font-weight: bold;
+    color: #2c3e50;
+    text-decoration: none;
+    padding: 10px;
+  }
+
+  nav a.router-link-exact-active {
+    color: #42b983;
+  }
 </style>

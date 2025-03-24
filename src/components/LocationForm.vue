@@ -177,9 +177,11 @@ export default defineComponent({
       </n-input-group>
 
       <n-input-group :style="{ paddingTop: '5%' }">
-        <n-button type="info" size="large" :style="{ width: '100%' }" @click="$emit('updateMap', value)">
-          Submit
-        </n-button>
+        <router-link to="/forecast" #="{ navigate, href }" custom>
+          <n-button type="info" size="large" :style="{ width: '100%' }" @click="$emit('updateMap', value), navigate">
+            Submit
+          </n-button>
+        </router-link>
       </n-input-group>
     </n-space>
   </n-card>
