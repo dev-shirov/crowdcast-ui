@@ -127,6 +127,7 @@ import { ArrowForwardSharp as ArrowRight } from '@vicons/ionicons5'
 
 
 .foot-notes > p {
+    color: #A8A8A8;
     font-size: 14px;
     text-align:justify;
     font-style: italic;

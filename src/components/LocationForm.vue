@@ -284,6 +284,7 @@ export default defineComponent({
 }
 
 .foot-notes > p {
+  color: #A8A8A8;
   text-align:justify;
   font-style: italic;
 }
