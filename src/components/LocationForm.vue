@@ -159,32 +159,32 @@ export default defineComponent({
           <p class="loc-question">Where do you want to go?</p>
       </n-flex>
       <n-space>
-        <n-radio
-          :checked="checkedValue === 'Boracay Island, Philippines'"
-          value="Boracay Island, Philippines"
-          name="basic-demo"
-          @change="handleChange"
-        >
-          Boracay Island
-        </n-radio>
+          <n-radio
+            :checked="checkedValue === 'Boracay Island, Philippines'"
+            value="Boracay Island, Philippines"
+            name="basic-demo"
+            @change="handleChange"
+          >
+            Boracay Island
+          </n-radio>
 
-        <n-radio
-          :checked="checkedValue === 'Bohol, Philippines'"
-          value="Bohol, Philippines"
-          name="basic-demo"
-          @change="handleChange"
-        >
-          Bohol
-        </n-radio>
+          <n-radio
+            :checked="checkedValue === 'Bohol, Philippines'"
+            value="Bohol, Philippines"
+            name="basic-demo"
+            @change="handleChange"
+          >
+            Bohol
+          </n-radio>
 
-        <n-radio
-          :checked="checkedValue === 'Cebu City, Philippines'"
-          value="Cebu City, Philippines"
-          name="basic-demo"
-          @change="handleChange"
-        >
-          Cebu
-        </n-radio>
+          <n-radio
+            :checked="checkedValue === 'Cebu City, Philippines'"
+            value="Cebu City, Philippines"
+            name="basic-demo"
+            @change="handleChange"
+          >
+            Cebu
+          </n-radio>
       </n-space>
       
       <n-flex class="loc-label" :style="{paddingTop: '20px'}">
@@ -256,6 +256,10 @@ export default defineComponent({
 .formInput {
   width: 400px;
   margin-left: 40px;
+}
+
+.n-space {
+  justify-content: space-between !important;
 }
 
 .loc-label {

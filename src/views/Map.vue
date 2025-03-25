@@ -1,13 +1,14 @@
 <script setup>
-    import LocationForm from '../components/LocationForm.vue'
     import PHMap from '../components/PhillippineMap.vue'
+    import HForm from '../components/HorizontalForm.vue'
+    import RecoView from '../components/Recommendation.vue'
 </script>
 
 <template>
+    <HForm />
     <n-flex justify="center">
         <div class="wrapper">
-            
-            <LocationForm/>
+            <RecoView />
             <PHMap/>
         </div>
     </n-flex>

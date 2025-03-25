@@ -83,7 +83,6 @@
         <n-card>
             
             <n-grid x-gap="12" :cols="4">
-
                 <n-gi>
                     <n-flex class="loc-label">
                         <p>Location</p>
@@ -125,9 +124,8 @@
                     </n-flex>
 
                     <n-space>
-                        asdasdasdasdasd
                         <n-input-group :style="{padding:'0px 0px 25px 0px'}">
-                            <n-select placeholder="Select month" :style="{ width: '20%' }" :options="selectOptions" size="large"/>
+                            <n-select placeholder="Select month" :style="{ width: '280px' }" :options="selectOptions" size="large"/>
                         </n-input-group>
                     </n-space>
                 </n-gi>
@@ -136,11 +134,16 @@
                     <n-flex class="loc-label">
                         <p>Activity</p>
                     </n-flex>
+
+                    <n-input-group>
+                        <n-select placeholder="Select activity" :style="{ width: '100%' }" :options="activityOptions" size="large"/>
+                    </n-input-group>
                 </n-gi>
 
                 <n-gi>
-                    asdaxxx
-                    <div class="green" />
+                    <n-button type="info" size="large" @click="">
+                        Forecast
+                    </n-button>
                 </n-gi>
 
             </n-grid>
@@ -150,6 +153,7 @@
 
 <style scoped>
     .n-card {
+        width: 100%;
         margin-bottom: 15px;
         border-radius: 10px;
         background-color: #F4F1DE;
@@ -165,5 +169,15 @@
         font-size: 20px;
         font-weight: 600;
         color: #3D405B;
+    }
+
+    .radioGrp {
+        padding-top: 10px;
+    }
+
+    .n-button {
+        width: 100%;
+        background-color: #81B29A;
+        margin-top: 34px;
     }
 </style>

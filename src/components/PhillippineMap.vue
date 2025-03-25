@@ -1,5 +1,5 @@
 <template>
-    <div id="map" style="height: 1000px; width: 1100px;"></div>
+    <div id="map" style="height: 800px; width: 700px;"></div>
 </template>
   
 <script>
@@ -39,7 +39,7 @@
     methods: {
       initMap() {
         // Initialize the map centered on the Philippines
-        this.map = L.map('map').setView([14.5995, 120.9842], 6);
+        this.map = L.map('map', {dragging: false}).setView([14.5995, 120.9842], 6);
         this.mapPin = L.marker([14.5995, 120.9842]).bindPopup('Manila, Philippines');
         this.mapPin.addTo(this.map).openPopup();
         // Add a tile layer (OpenStreetMap)
@@ -116,6 +116,5 @@
   <style scoped>
   #map {
     margin: 0px 0;
-    margin-left: 20px;
   }
   </style>
