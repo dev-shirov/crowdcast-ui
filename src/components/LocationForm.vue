@@ -276,6 +276,7 @@ export default defineComponent({
   width: 600px;
   height:700px;
   border-radius: 25px;
+  background-color: #F4F1DE;
 }
 
 .logo-container {

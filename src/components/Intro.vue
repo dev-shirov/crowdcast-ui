@@ -49,6 +49,7 @@ import { ArrowForwardSharp as ArrowRight } from '@vicons/ionicons5'
     width: 600px;
     height:700px;
     border-radius: 25px;
+    background-color: #F4F1DE;
 }
 
 .logo-container {
