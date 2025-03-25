@@ -23,7 +23,7 @@
     methods: {
       initMap() {
         // Initialize the map centered on the Philippines
-        this.map = L.map('map').setView([14.5995, 120.9842], 5);
+        this.map = L.map('map').setView([14.5995, 120.9842], 6);
         this.mapPin = L.marker([14.5995, 120.9842]).bindPopup('Manila, Philippines');
         this.mapPin.addTo(this.map).openPopup();
         // Add a tile layer (OpenStreetMap)
