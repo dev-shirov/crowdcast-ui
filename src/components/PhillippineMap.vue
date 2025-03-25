@@ -6,18 +6,34 @@
   import L from 'leaflet';
   import 'leaflet/dist/leaflet.css';
   import axios from 'axios';
+  import { useLocationStore } from '@/store/locationStore'
+  import { mapStores } from 'pinia';
 
   export default {
     name: 'ChoroplethMap',
+    computed: {
+      ...mapStores(useLocationStore)
+    },
     data() {
       return {
         map: null,
         mapPin: null,
-        geojson: null,
+        geojson: null
       };
     },
     mounted() {
+      this.locationStore.$onAction(({
+        name, store, args, after, onError
+      }) => {
+        after(() => {
+          this.updateMap()
+        })
+      })
+
       this.initMap();
+      if(this.locationStore.id) {
+        this.updateMap();
+      }
     },
     expose: ['updateMap'],
     methods: {
@@ -79,15 +95,21 @@
         `;
         layer.bindPopup(popupContent);
       },
-      updateMap(location) {
-        // TODO: update based on the pased location
+      updateMap() {
+        var location = {
+          id: this.locationStore.id,
+          name: this.locationStore.name,
+          lat: this.locationStore.latitude,
+          long: this.locationStore.longitude,
+          zoom: this.locationStore.zoom
+        }
         this.loadGeoJSON(location);
         this.map.flyTo([location.lat, location.long], location.zoom);
         this.mapPin.removeFrom(this.map);
         this.mapPin = L.marker([location.lat, location.long]).bindPopup(location.name);
         this.mapPin.addTo(this.map).openPopup();
       }
-    },
+    }
   };
   </script>
   

@@ -1,118 +1,79 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
+import { useLocationStore } from '@/store/locationStore'
+
+const boracayInfo = {
+  id: 2510,
+  name: 'Boracay Island, Philippines',
+  lat: 11.9674,
+  long: 121.9248,
+  zoom: 13,
+}
+
+const boholInfo = {
+  id: 2821,
+  name: 'Bohol, Philippines',
+  lat: 9.6499974,
+  long: 123.8499966,
+  zoom: 13,
+}
+
+const cebuInfo = {
+  id: 223,
+  name: 'Cebu City, Philippines',
+  lat: 10.3157 ,
+  long: 123.8854,
+  zoom: 12,
+}
+
 
 export default defineComponent({
   setup() {
+    const locationStore = useLocationStore()
     const checkedValueRef = ref<string | null>(null)
-    const boracayInfo = {
-      id: 2510,
-      name: 'Boracay Island, Philippines',
-      lat: 11.9674,
-      long: 121.9248,
-      zoom: 13,
-    }
-
-    const boholInfo = {
-      id: 2821,
-      name: 'Bohol, Philippines',
-      lat: 9.6499974,
-      long: 123.8499966,
-      zoom: 13,
-    }
-
-    const cebuInfo = {
-      id: 223,
-      name: 'Cebu City, Philippines',
-      lat: 10.3157 ,
-      long: 123.8854,
-      zoom: 8,
-    }
-
+    console.log(locationStore.name)
+    if(locationStore.name)
+      checkedValueRef.value = locationStore.name
 
     return {
+      locationStore,
       checkedValue: checkedValueRef,
       showRecommendation: true,
       handleChange(e: Event) {
         checkedValueRef.value = (e.target as HTMLInputElement).value
-        if (checkedValueRef.value === 'Boracay Island') {
+        if (checkedValueRef.value === 'Boracay Island, Philippines') {
           console.log(boracayInfo);
+          locationStore.setDetails(
+            boracayInfo.id, 
+            boracayInfo.name, 
+            boracayInfo.lat, 
+            boracayInfo.long, 
+            boracayInfo.zoom
+          )
         }
 
-        if (checkedValueRef.value === 'Bohol') {
+        if (checkedValueRef.value === 'Bohol, Philippines') {
           console.log(boholInfo);
+          locationStore.setDetails(
+            boholInfo.id, 
+            boholInfo.name, 
+            boholInfo.lat, 
+            boholInfo.long, 
+            boholInfo.zoom
+          )
         }
 
-        if (checkedValueRef.value === 'Cebu') {
+        if (checkedValueRef.value === 'Cebu City, Philippines') {
           console.log(cebuInfo);
+          locationStore.setDetails(
+            cebuInfo.id, 
+            cebuInfo.name, 
+            cebuInfo.lat, 
+            cebuInfo.long, 
+            cebuInfo.zoom
+          )
         }
-
       },
-      // cascaderOptions: ref([
-      //   {
-      //     label: 'Aklan',
-      //     value: 1,
-      //     children: [
-      //       {
-      //         label: 'Boracay Island',
-      //         value: {
-      //           id: 2510,
-      //           name: 'Boracay Island, Philippines',
-      //           lat: 11.9674,
-      //           long: 121.9248,
-      //           zoom: 13,
-      //         },
-      //       },
-      //     ]
-      //   },
-      //   {
-      //     label: 'Bohol',
-      //     value: 2,
-      //     children: [
-      //       {
-      //         label: 'Tagbilaran City',
-      //         value: {
-      //           id: 2821,
-      //           name: 'Tagbilaran City, Philippines',
-      //           lat: 9.6499974,
-      //           long: 123.8499966,
-      //           zoom: 13,
-      //         },
-      //       },
-      //     ]
-      //   },
-      //   {
-      //     label: 'Benguet',
-      //     value: 3,
-      //     children: [
-      //       {
-      //         label: 'Baguio City',
-      //         value: {
-      //           id: 73,
-      //           name: 'Baguio City, Philippines',
-      //           lat: 16.416665 ,
-      //           long: 120.5999976,
-      //           zoom: 13,
-      //         },
-      //       },
-      //     ]
-      //   },
-      //   {
-      //     label: 'Cebu',
-      //     value: 4,
-      //     children: [
-      //       {
-      //         label: 'Cebu City',
-      //         value: {
-      //           id: 223,
-      //           name: 'Cebu City, Philippines',
-      //           lat: 10.3157 ,
-      //           long: 123.8854,
-      //           zoom: 8,
-      //         },
-      //       },
-      //     ]
-      //   }
-      // ]),
       selectOptions: ref([
         {
           label: 'January',
@@ -178,20 +139,6 @@ export default defineComponent({
         },
       ])
     }
-  },
-  methods: {
-    
-  },
-  emits: {
-    click: null,
-    updateMap: (value) => {
-      if (value) {
-        return true
-      }
-      else {
-        return false
-      }
-    }
   }
 })
 </script>
@@ -209,8 +156,8 @@ export default defineComponent({
       </n-flex>
       <n-space>
         <n-radio
-          :checked="checkedValue === 'Boracay Island'"
-          value="Boracay Island"
+          :checked="checkedValue === 'Boracay Island, Philippines'"
+          value="Boracay Island, Philippines"
           name="basic-demo"
           @change="handleChange"
         >
@@ -218,8 +165,8 @@ export default defineComponent({
         </n-radio>
 
         <n-radio
-          :checked="checkedValue === 'Bohol'"
-          value="Bohol"
+          :checked="checkedValue === 'Bohol, Philippines'"
+          value="Bohol, Philippines"
           name="basic-demo"
           @change="handleChange"
         >
@@ -227,8 +174,8 @@ export default defineComponent({
         </n-radio>
 
         <n-radio
-          :checked="checkedValue === 'Cebu'"
-          value="Cebu"
+          :checked="checkedValue === 'Cebu City, Philippines'"
+          value="Cebu City, Philippines"
           name="basic-demo"
           @change="handleChange"
         >
