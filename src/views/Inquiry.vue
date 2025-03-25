@@ -10,8 +10,6 @@
 <template>
     <div class="about">
         <LocationForm @update-map="mapChanged"/>
-        <br>
-        <router-link to="/">Back to Home</router-link>
     </div>
 </template>
   

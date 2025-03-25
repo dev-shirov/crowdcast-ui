@@ -13,6 +13,7 @@
 <template>
     <n-flex justify="center">
         <div class="wrapper">
+            
             <LocationForm @update-map="mapChanged"/>
             <PHMap ref="phmap"/>
         </div>
@@ -20,10 +21,6 @@
 </template>
 
 <style scoped>
-    header {
-        line-height: 2.5;
-    }
-
     @media (min-width: 1024px) {
         .wrapper {
             display: flex;
