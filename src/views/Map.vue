@@ -1,21 +1,14 @@
 <script setup>
     import LocationForm from '../components/LocationForm.vue'
     import PHMap from '../components/PhillippineMap.vue'
-    import { useTemplateRef } from 'vue'
-
-    const mapRef = useTemplateRef('phmap')
-
-    function mapChanged(value) {
-        mapRef.value.updateMap(value)
-    }
 </script>
 
 <template>
     <n-flex justify="center">
         <div class="wrapper">
             
-            <LocationForm @update-map="mapChanged"/>
-            <PHMap ref="phmap"/>
+            <LocationForm/>
+            <PHMap/>
         </div>
     </n-flex>
 </template>

@@ -1,6 +1,7 @@
-import { getForecast } from "@/api/crowdcast";
+import { getRecommendationFromAPI } from "@/api/crowdcast";
+import { useLocationStore } from "@/store/locationStore";
 
-export function useCrowdcast() {
+export function useLocationService() {
   async function recommend() {
     // pass data from forms here, build parameters here
     // params = {

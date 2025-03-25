@@ -1,15 +1,10 @@
 <script setup>
     import LocationForm from '../components/LocationForm.vue'
-    import { useTemplateRef } from 'vue'
-    const mapRef = useTemplateRef('phmap')
-    function mapChanged(value) {
-        mapRef.value.updateMap(value)
-    }
 </script>
 
 <template>
     <div class="about">
-        <LocationForm @update-map="mapChanged"/>
+        <LocationForm/>
     </div>
 </template>
   
