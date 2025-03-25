@@ -137,6 +137,10 @@ export default defineComponent({
           label: 'Staycation',
           value: 3
         },
+        {
+          label: 'Nightlife',
+          value: 4
+        },
       ])
     }
   }
@@ -182,9 +186,6 @@ export default defineComponent({
           Cebu
         </n-radio>
       </n-space>
-      <!-- <n-input-group>
-        <n-cascader placeholder="Select location" :style="{ width: '100%' }" :options="cascaderOptions" size="large" v-model:value="value" /> 
-      </n-input-group> -->
       
       <n-flex class="loc-label" :style="{paddingTop: '20px'}">
         <p>Month</p>
@@ -204,14 +205,19 @@ export default defineComponent({
 
       <n-input-group class="btn-grp" :style="{ paddingTop: '5%' }">
         <router-link to="/forecast" #="{ navigate, href }" custom>
-          <!-- <n-button type="info" size="large" :style="{ width: '50%', backgroundColor:'#81B29A'}" @click="$emit('updateMap', value), navigate">
-            Forecast
-          </n-button> -->
           <n-button type="info" size="large" :style="{ width: '50%', backgroundColor:'#81B29A'}" @click="navigate">
             Forecast
           </n-button>
         </router-link>
       </n-input-group>
+
+      <n-flex class="foot-notes" :style="{paddingTop: '20px'}">
+        <p>
+          CROWDCAST's forecasting models use past weather and historical visitor data to predict weather and 
+          how many people will visit a tourist spot each month. Powered by Gemini, it can also recommend activities 
+          accordingly.
+        </p>
+      </n-flex>
     </n-space>
   </n-card>
 
@@ -220,7 +226,7 @@ export default defineComponent({
 <style scoped>
 .form {
   padding-top: 20px;
-  width: 600px;
+  width: 550px;
   height:700px;
   border-radius: 25px;
   background-color: #F4F1DE;
@@ -232,7 +238,7 @@ export default defineComponent({
 }
 
 .logo {
-    margin-left: 70px  ;
+    margin-left: 40px;
     width: 76px;
     height: 76px; 
 }
@@ -249,9 +255,8 @@ export default defineComponent({
 
 .formInput {
   width: 400px;
-  margin-left: 65px;
+  margin-left: 40px;
 }
-
 
 .loc-label {
   align-items: center;
@@ -274,4 +279,8 @@ export default defineComponent({
   justify-content: flex-end;
 }
 
+.foot-notes > p {
+  text-align:justify;
+  font-style: italic;
+}
 </style>
