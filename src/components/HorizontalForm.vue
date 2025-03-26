@@ -170,6 +170,7 @@
               this.locationStore.recommendation = response.recommendation[0]
               this.locationStore.recommendedActivities = response.recommended
               this.locationStore.notRecommendedActivities = response.nonRecommended
+              this.locationStore.crowds = response.crowds
             })
           }
         }

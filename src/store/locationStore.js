@@ -13,6 +13,7 @@ export const useLocationStore = defineStore('location', () => {
   const notRecommendedActivities = ref([])
   const selectedMonth = ref(null)
   const selectedActivity = ref(null)
+  const crowds = ref(null)
 
   // Actions
   function setDetails(id, name, latitude, longitude, zoom) {
@@ -34,6 +35,7 @@ export const useLocationStore = defineStore('location', () => {
     recommendation, // for results
     recommendedActivities, // for results
     notRecommendedActivities, // for results
+    crowds, //for results
     setDetails
   }
 })
