@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@primeuix/themes": "^1.0.0",
+    "@vicons/fluent": "^0.13.0",
     "@vicons/ionicons5": "^0.13.0",
     "axios": "^1.8.3",
     "leaflet": "^1.9.4",

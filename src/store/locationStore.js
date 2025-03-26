@@ -8,6 +8,12 @@ export const useLocationStore = defineStore('location', () => {
   const latitude = ref(0)
   const longitude = ref(0)
   const zoom = ref(0)
+  const recommendation = ref('')
+  const recommendedActivities = ref([])
+  const notRecommendedActivities = ref([])
+  const selectedMonth = ref(null)
+  const selectedActivity = ref(null)
+  const crowds = ref(null)
 
   // Actions
   function setDetails(id, name, latitude, longitude, zoom) {
@@ -23,7 +29,13 @@ export const useLocationStore = defineStore('location', () => {
     name, 
     latitude, 
     longitude, 
-    zoom ,
+    zoom,
+    selectedMonth,
+    selectedActivity,
+    recommendation, // for results
+    recommendedActivities, // for results
+    notRecommendedActivities, // for results
+    crowds, //for results
     setDetails
   }
 })

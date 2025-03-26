@@ -31,7 +31,7 @@ export default defineComponent({
   setup() {
     const locationStore = useLocationStore()
     const checkedValueRef = ref<string | null>(null)
-    console.log(locationStore.name)
+    
     if(locationStore.name)
       checkedValueRef.value = locationStore.name
 
@@ -41,7 +41,7 @@ export default defineComponent({
       showRecommendation: true,
       handleChange(e: Event) {
         checkedValueRef.value = (e.target as HTMLInputElement).value
-        if (checkedValueRef.value === 'Boracay Island, Philippines') {
+        if (checkedValueRef.value === 'Boracay Island') {
           console.log(boracayInfo);
           locationStore.setDetails(
             boracayInfo.id, 
@@ -52,7 +52,7 @@ export default defineComponent({
           )
         }
 
-        if (checkedValueRef.value === 'Bohol, Philippines') {
+        if (checkedValueRef.value === 'Bohol') {
           console.log(boholInfo);
           locationStore.setDetails(
             boholInfo.id, 
@@ -63,7 +63,7 @@ export default defineComponent({
           )
         }
 
-        if (checkedValueRef.value === 'Cebu City, Philippines') {
+        if (checkedValueRef.value === 'Cebu') {
           console.log(cebuInfo);
           locationStore.setDetails(
             cebuInfo.id, 
@@ -77,71 +77,79 @@ export default defineComponent({
       selectOptions: ref([
         {
           label: 'January',
-          value: '1'
+          value: 1
         },
         {
           label: 'February',
-          value: '2'
+          value: 2
         },
         {
           label: 'March',
-          value: '3'
+          value: 3
         },
         {
           label: 'April',
-          value: '4'
+          value: 4
         },
         {
           label: 'May',
-          value: '5'
+          value: 5
         },
         {
           label: 'June',
-          value: '6'
+          value: 6
         },
         {
           label: 'July',
-          value: '7'
+          value: 7
         },
         {
           label: 'August',
-          value: '8'
+          value: 8
         },
         {
           label: 'September',
-          value: '9'
+          value: 9
         },
         {
           label: 'October',
-          value: '10'
+          value: 10
         },
         {
           label: 'November',
-          value: '11'
+          value: 11
         },
         {
           label: 'December',
-          value: '12'
+          value: 12
         },
       ]),
       activityOptions: ref([
         {
           label: 'Hiking',
-          value: 1
+          value: 'Hiking'
         },
         {
           label: 'Surfing',
-          value: 2
+          value: 'Surfing'
         },
         {
           label: 'Staycation',
-          value: 3
+          value: 'Staycation'
         },
         {
           label: 'Nightlife',
-          value: 4
+          value: 'Nightlife'
         },
       ])
+    }
+  },
+  methods: {
+    selectMonth(value) {
+      this.locationStore.selectedMonth = value
+    },
+    selectActivity(value) {
+      this.locationStore.selectedActivity = value
     }
   }
 })
@@ -155,6 +163,7 @@ export default defineComponent({
           <img class="logo" src="/crowdcast-logo.png">
           <p class="crowdcast-title">Crowdcast</p>
       </n-flex>
+<<<<<<< HEAD
       <n-space class="formInput" vertical>
         <n-flex class="loc-label">
             <p>Location</p>
@@ -225,6 +234,70 @@ export default defineComponent({
     <div class="woman"><img src="../assets/Woman.svg"/></div>
   </n-flex>
 
+=======
+      <n-space>
+          <n-radio
+            :checked="checkedValue === 'Boracay Island'"
+            value="Boracay Island"
+            name="basic-demo"
+            @change="handleChange"
+          >
+            Boracay Island
+          </n-radio>
+
+          <n-radio
+            :checked="checkedValue === 'Bohol'"
+            value="Bohol"
+            name="basic-demo"
+            @change="handleChange"
+          >
+            Bohol
+          </n-radio>
+
+          <n-radio
+            :checked="checkedValue === 'Cebu'"
+            value="Cebu"
+            name="basic-demo"
+            @change="handleChange"
+          >
+            Cebu
+          </n-radio>
+      </n-space>
+      
+      <n-flex class="loc-label" :style="{paddingTop: '20px'}">
+        <p>Month</p>
+        <p class="loc-question">What month in 2025?</p>
+      </n-flex>
+      <n-input-group :style="{padding:'0px 0px 25px 0px'}">
+        <n-select placeholder="Select month" :style="{ width: '100%' }" :options="selectOptions" size="large" @change="selectMonth"/>
+      </n-input-group>
+
+      <n-flex class="loc-label">
+        <p>Activity</p>
+        <p class="loc-question">What are you planning to do?</p>
+      </n-flex>
+      <n-input-group>
+        <n-select placeholder="Select activity" :style="{ width: '100%' }" :options="activityOptions" size="large" @change="selectActivity"/>
+      </n-input-group>
+
+      <n-input-group class="btn-grp" :style="{ paddingTop: '5%' }">
+        <router-link to="/forecast" #="{ navigate, href }" custom>
+          <n-button type="info" size="large" :style="{ width: '50%', backgroundColor:'#81B29A'}" @click="navigate">
+            Forecast
+          </n-button>
+        </router-link>
+      </n-input-group>
+
+      <n-flex class="foot-notes" :style="{paddingTop: '20px'}">
+        <p>
+          CROWDCAST's forecasting models use past weather and historical visitor data to predict weather and 
+          how many people will visit a tourist spot each month. Powered by Gemini, it can also recommend activities 
+          accordingly.
+        </p>
+      </n-flex>
+    </n-space>
+  </n-card>
+>>>>>>> b95e4937dbe606c0228bbb5e9b656d54433bb81b
 
 </template>
 
