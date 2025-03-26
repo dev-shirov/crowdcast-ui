@@ -46,6 +46,7 @@
                 break
               case 'Cebu City, Philippines':
                 checkedValueRef.value = 'Cebu'
+                break
               default:
                 checkedValueRef.value = ''
             }
@@ -167,6 +168,8 @@
             .then((response) => {
               console.log(response)
               this.locationStore.recommendation = response.recommendation[0]
+              this.locationStore.recommendedActivities = response.recommended
+              this.locationStore.notRecommendedActivities = response.nonRecommended
             })
           }
         }

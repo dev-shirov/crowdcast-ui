@@ -10,6 +10,7 @@ export const useLocationStore = defineStore('location', () => {
   const zoom = ref(0)
   const recommendation = ref('')
   const recommendedActivities = ref([])
+  const notRecommendedActivities = ref([])
   const selectedMonth = ref(null)
   const selectedActivity = ref(null)
 
@@ -32,6 +33,7 @@ export const useLocationStore = defineStore('location', () => {
     selectedActivity,
     recommendation, // for results
     recommendedActivities, // for results
+    notRecommendedActivities, // for results
     setDetails
   }
 })

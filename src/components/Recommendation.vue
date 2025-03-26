@@ -8,6 +8,9 @@
   const crowdcastSays = ref(null)
   
   watch(recommendation, () => {
+    console.log('recommendation: ', locationStore.recommendation)
+    console.log('activities: ', locationStore.recommendedActivities)
+    console.log('not recommended: ', locationStore.notRecommendedActivities)
     crowdcastSays.value = locationStore.recommendation
   })
 </script>
@@ -57,9 +60,9 @@
 
             <n-flex class="foot-notes" :style="{paddingTop: '20px'}">
                 <p>
-                CROWDCAST's forecasting models use past weather and historical visitor data to predict weather and 
-                how many people will visit a tourist spot each month. Powered by Gemini, it can also recommend activities 
-                accordingly.
+                  CROWDCAST's forecasting models use past weather and historical visitor data to predict weather and 
+                  how many people will visit a tourist spot each month. Powered by Gemini, it can also recommend activities 
+                  accordingly.
                 </p>
             </n-flex>
         </n-space>
