@@ -1,3 +1,17 @@
+<script setup>
+  import { useLocationStore } from '@/store/locationStore';
+  import { storeToRefs } from 'pinia';
+  import { watch, ref } from 'vue';
+  
+  const locationStore = useLocationStore()
+  const { recommendation } = storeToRefs(locationStore)
+  const crowdcastSays = ref(null)
+  
+  watch(recommendation, () => {
+    crowdcastSays.value = locationStore.recommendation
+  })
+</script>
+
 <template>
     <n-card>
         <n-space>
@@ -5,36 +19,39 @@
                 <p class="crowdcast-title">CROWDCAST says...</p>
             </n-flex>
             <n-infinite-scroll style="height: 500px" :distance="10" @load="">
-                <p>
-                    CROWDCAST's forecasting models use past weather and historical visitor data to predict weather and 
-                how many people will visit a tourist spot each month. Powered by Gemini, it can also recommend activities 
-                accordingly.CROWDCAST's forecasting models use past weather and historical visitor data to predict weather and 
-                how many people will visit a tourist spot each month. Powered by Gemini, it can also recommend activities 
-                accordingly.CROWDCAST's forecasting models use past weather and historical visitor data to predict weather and 
-                how many people will visit a tourist spot each month. Powered by Gemini, it can also recommend activities 
-                accordingly.CROWDCAST's forecasting models use past weather and historical visitor data to predict weather and 
-                how many people will visit a tourist spot each month. Powered by Gemini, it can also recommend activities 
-                accordingly.CROWDCAST's forecasting models use past weather and historical visitor data to predict weather and 
-                how many people will visit a tourist spot each month. Powered by Gemini, it can also recommend activities 
-                accordingly.CROWDCAST's forecasting models use past weather and historical visitor data to predict weather and 
-                how many people will visit a tourist spot each month. Powered by Gemini, it can also recommend activities 
-                accordingly.CROWDCAST's forecasting models use past weather and historical visitor data to predict weather and 
-                how many people will visit a tourist spot each month. Powered by Gemini, it can also recommend activities 
-                accordingly.CROWDCAST's forecasting models use past weather and historical visitor data to predict weather and 
-                how many people will visit a tourist spot each month. Powered by Gemini, it can also recommend activities 
-                accordingly.CROWDCAST's forecasting models use past weather and historical visitor data to predict weather and 
-                how many people will visit a tourist spot each month. Powered by Gemini, it can also recommend activities 
-                accordingly.CROWDCAST's forecasting models use past weather and historical visitor data to predict weather and 
-                how many people will visit a tourist spot each month. Powered by Gemini, it can also recommend activities 
-                accordingly.CROWDCAST's forecasting models use past weather and historical visitor data to predict weather and 
-                how many people will visit a tourist spot each month. Powered by Gemini, it can also recommend activities 
-                accordingly.CROWDCAST's forecasting models use past weather and historical visitor data to predict weather and 
-                how many people will visit a tourist spot each month. Powered by Gemini, it can also recommend activities 
-                accordingly.CROWDCAST's forecasting models use past weather and historical visitor data to predict weather and 
-                how many people will visit a tourist spot each month. Powered by Gemini, it can also recommend activities 
-                accordingly.CROWDCAST's forecasting models use past weather and historical visitor data to predict weather and 
-                how many people will visit a tourist spot each month. Powered by Gemini, it can also recommend activities 
-                accordingly.
+                <p v-if="recommendation">
+                    {{ crowdcastSays }}
+                </p>
+                <p v-else>
+                  CROWDCAST's forecasting models use past weather and historical visitor data to predict weather and 
+                  how many people will visit a tourist spot each month. Powered by Gemini, it can also recommend activities 
+                  accordingly.CROWDCAST's forecasting models use past weather and historical visitor data to predict weather and 
+                  how many people will visit a tourist spot each month. Powered by Gemini, it can also recommend activities 
+                  accordingly.CROWDCAST's forecasting models use past weather and historical visitor data to predict weather and 
+                  how many people will visit a tourist spot each month. Powered by Gemini, it can also recommend activities 
+                  accordingly.CROWDCAST's forecasting models use past weather and historical visitor data to predict weather and 
+                  how many people will visit a tourist spot each month. Powered by Gemini, it can also recommend activities 
+                  accordingly.CROWDCAST's forecasting models use past weather and historical visitor data to predict weather and 
+                  how many people will visit a tourist spot each month. Powered by Gemini, it can also recommend activities 
+                  accordingly.CROWDCAST's forecasting models use past weather and historical visitor data to predict weather and 
+                  how many people will visit a tourist spot each month. Powered by Gemini, it can also recommend activities 
+                  accordingly.CROWDCAST's forecasting models use past weather and historical visitor data to predict weather and 
+                  how many people will visit a tourist spot each month. Powered by Gemini, it can also recommend activities 
+                  accordingly.CROWDCAST's forecasting models use past weather and historical visitor data to predict weather and 
+                  how many people will visit a tourist spot each month. Powered by Gemini, it can also recommend activities 
+                  accordingly.CROWDCAST's forecasting models use past weather and historical visitor data to predict weather and 
+                  how many people will visit a tourist spot each month. Powered by Gemini, it can also recommend activities 
+                  accordingly.CROWDCAST's forecasting models use past weather and historical visitor data to predict weather and 
+                  how many people will visit a tourist spot each month. Powered by Gemini, it can also recommend activities 
+                  accordingly.CROWDCAST's forecasting models use past weather and historical visitor data to predict weather and 
+                  how many people will visit a tourist spot each month. Powered by Gemini, it can also recommend activities 
+                  accordingly.CROWDCAST's forecasting models use past weather and historical visitor data to predict weather and 
+                  how many people will visit a tourist spot each month. Powered by Gemini, it can also recommend activities 
+                  accordingly.CROWDCAST's forecasting models use past weather and historical visitor data to predict weather and 
+                  how many people will visit a tourist spot each month. Powered by Gemini, it can also recommend activities 
+                  accordingly.CROWDCAST's forecasting models use past weather and historical visitor data to predict weather and 
+                  how many people will visit a tourist spot each month. Powered by Gemini, it can also recommend activities 
+                  accordingly.
                 </p>
             </n-infinite-scroll>
 

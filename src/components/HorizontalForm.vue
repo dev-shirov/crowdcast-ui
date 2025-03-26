@@ -36,7 +36,6 @@
             const checkedValueRef = ref<string | null>(null)
             const activityMonth = ref(locationStore.selectedMonth)
             const activityName = ref(locationStore.selectedActivity)
-            console.log(locationStore.selectedActivity)
             
             switch(locationStore.name) {
               case 'Boracay Island, Philippines':
@@ -167,7 +166,7 @@
             this.locationService.recommend(this.checkedValue, this.activityMonth, this.activityName)
             .then((response) => {
               console.log(response)
-              this.locationStore.recommendation = response.recommendation
+              this.locationStore.recommendation = response.recommendation[0]
             })
           }
         }
