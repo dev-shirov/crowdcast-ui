@@ -41,7 +41,9 @@
         // Initialize the map centered on the Philippines
         this.map = L.map('map', {
           dragging: false,
-          zoomControl: false
+          zoomControl: false,
+          scrollWheelZoom: false,
+          doubleClickZoom: false
         }).setView([14.5995, 120.9842], 6);
         this.mapPin = L.marker([14.5995, 120.9842]).bindPopup('Manila, Philippines');
         this.mapPin.addTo(this.map).openPopup();
