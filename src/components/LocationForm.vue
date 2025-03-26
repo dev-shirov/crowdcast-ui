@@ -31,7 +31,7 @@ export default defineComponent({
   setup() {
     const locationStore = useLocationStore()
     const checkedValueRef = ref<string | null>(null)
-    console.log(locationStore.name)
+    
     if(locationStore.name)
       checkedValueRef.value = locationStore.name
 
@@ -41,7 +41,7 @@ export default defineComponent({
       showRecommendation: true,
       handleChange(e: Event) {
         checkedValueRef.value = (e.target as HTMLInputElement).value
-        if (checkedValueRef.value === 'Boracay Island, Philippines') {
+        if (checkedValueRef.value === 'Boracay Island') {
           console.log(boracayInfo);
           locationStore.setDetails(
             boracayInfo.id, 
@@ -52,7 +52,7 @@ export default defineComponent({
           )
         }
 
-        if (checkedValueRef.value === 'Bohol, Philippines') {
+        if (checkedValueRef.value === 'Bohol') {
           console.log(boholInfo);
           locationStore.setDetails(
             boholInfo.id, 
@@ -63,7 +63,7 @@ export default defineComponent({
           )
         }
 
-        if (checkedValueRef.value === 'Cebu City, Philippines') {
+        if (checkedValueRef.value === 'Cebu') {
           console.log(cebuInfo);
           locationStore.setDetails(
             cebuInfo.id, 
@@ -160,8 +160,8 @@ export default defineComponent({
       </n-flex>
       <n-space>
           <n-radio
-            :checked="checkedValue === 'Boracay Island, Philippines'"
-            value="Boracay Island, Philippines"
+            :checked="checkedValue === 'Boracay Island'"
+            value="Boracay Island"
             name="basic-demo"
             @change="handleChange"
           >
@@ -169,8 +169,8 @@ export default defineComponent({
           </n-radio>
 
           <n-radio
-            :checked="checkedValue === 'Bohol, Philippines'"
-            value="Bohol, Philippines"
+            :checked="checkedValue === 'Bohol'"
+            value="Bohol"
             name="basic-demo"
             @change="handleChange"
           >
@@ -178,8 +178,8 @@ export default defineComponent({
           </n-radio>
 
           <n-radio
-            :checked="checkedValue === 'Cebu City, Philippines'"
-            value="Cebu City, Philippines"
+            :checked="checkedValue === 'Cebu'"
+            value="Cebu"
             name="basic-demo"
             @change="handleChange"
           >
