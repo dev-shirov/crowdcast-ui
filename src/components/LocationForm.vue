@@ -148,78 +148,83 @@ export default defineComponent({
 </script>
 
 <template>
-  <n-card class="form" size="huge" hoverable>
-    <n-flex class="logo-container">
-        <img class="logo" src="/crowdcast-logo.png">
-        <p class="crowdcast-title">Crowdcast</p>
-    </n-flex>
-    <n-space class="formInput" vertical>
-      <n-flex class="loc-label">
-          <p>Location</p>
-          <p class="loc-question">Where do you want to go?</p>
+  <n-flex>
+    <div class="guy"><img src="../assets/Guy.svg"/></div>
+    <n-card class="form" size="huge" hoverable>
+      <n-flex class="logo-container">
+          <img class="logo" src="/crowdcast-logo.png">
+          <p class="crowdcast-title">Crowdcast</p>
       </n-flex>
-      <n-space>
-          <n-radio
-            :checked="checkedValue === 'Boracay Island, Philippines'"
-            value="Boracay Island, Philippines"
-            name="basic-demo"
-            @change="handleChange"
-          >
-            Boracay Island
-          </n-radio>
+      <n-space class="formInput" vertical>
+        <n-flex class="loc-label">
+            <p>Location</p>
+            <p class="loc-question">Where do you want to go?</p>
+        </n-flex>
+        <n-space>
+            <n-radio
+              :checked="checkedValue === 'Boracay Island, Philippines'"
+              value="Boracay Island, Philippines"
+              name="basic-demo"
+              @change="handleChange"
+            >
+              Boracay Island
+            </n-radio>
 
-          <n-radio
-            :checked="checkedValue === 'Bohol, Philippines'"
-            value="Bohol, Philippines"
-            name="basic-demo"
-            @change="handleChange"
-          >
-            Bohol
-          </n-radio>
+            <n-radio
+              :checked="checkedValue === 'Bohol, Philippines'"
+              value="Bohol, Philippines"
+              name="basic-demo"
+              @change="handleChange"
+            >
+              Bohol
+            </n-radio>
 
-          <n-radio
-            :checked="checkedValue === 'Cebu City, Philippines'"
-            value="Cebu City, Philippines"
-            name="basic-demo"
-            @change="handleChange"
-          >
-            Cebu
-          </n-radio>
+            <n-radio
+              :checked="checkedValue === 'Cebu City, Philippines'"
+              value="Cebu City, Philippines"
+              name="basic-demo"
+              @change="handleChange"
+            >
+              Cebu
+            </n-radio>
+        </n-space>
+        
+        <n-flex class="loc-label" :style="{paddingTop: '20px'}">
+          <p>Month</p>
+          <p class="loc-question">What month in 2025?</p>
+        </n-flex>
+        <n-input-group :style="{padding:'0px 0px 25px 0px'}">
+          <n-select placeholder="Select month" :style="{ width: '100%' }" :options="selectOptions" size="large"/>
+        </n-input-group>
+
+        <n-flex class="loc-label">
+          <p>Activity</p>
+          <p class="loc-question">What are you planning to do?</p>
+        </n-flex>
+        <n-input-group>
+          <n-select placeholder="Select activity" :style="{ width: '100%' }" :options="activityOptions" size="large"/>
+        </n-input-group>
+
+        <n-input-group class="btn-grp" :style="{ paddingTop: '5%' }">
+          <router-link to="/forecast" #="{ navigate, href }" custom>
+            <n-button type="info" size="large" :style="{ width: '50%', backgroundColor:'#81B29A'}" @click="navigate">
+              Forecast
+            </n-button>
+          </router-link>
+        </n-input-group>
+
+        <n-flex class="foot-notes" :style="{paddingTop: '20px'}">
+          <p>
+            CROWDCAST's forecasting models use past weather and historical visitor data to predict weather and 
+            how many people will visit a tourist spot each month. Powered by Gemini, it can also recommend activities 
+            accordingly.
+          </p>
+        </n-flex>
       </n-space>
-      
-      <n-flex class="loc-label" :style="{paddingTop: '20px'}">
-        <p>Month</p>
-        <p class="loc-question">What month in 2025?</p>
-      </n-flex>
-      <n-input-group :style="{padding:'0px 0px 25px 0px'}">
-        <n-select placeholder="Select month" :style="{ width: '100%' }" :options="selectOptions" size="large"/>
-      </n-input-group>
+    </n-card>
+    <div class="woman"><img src="../assets/Woman.svg"/></div>
+  </n-flex>
 
-      <n-flex class="loc-label">
-        <p>Activity</p>
-        <p class="loc-question">What are you planning to do?</p>
-      </n-flex>
-      <n-input-group>
-        <n-select placeholder="Select activity" :style="{ width: '100%' }" :options="activityOptions" size="large"/>
-      </n-input-group>
-
-      <n-input-group class="btn-grp" :style="{ paddingTop: '5%' }">
-        <router-link to="/forecast" #="{ navigate, href }" custom>
-          <n-button type="info" size="large" :style="{ width: '50%', backgroundColor:'#81B29A'}" @click="navigate">
-            Forecast
-          </n-button>
-        </router-link>
-      </n-input-group>
-
-      <n-flex class="foot-notes" :style="{paddingTop: '20px'}">
-        <p>
-          CROWDCAST's forecasting models use past weather and historical visitor data to predict weather and 
-          how many people will visit a tourist spot each month. Powered by Gemini, it can also recommend activities 
-          accordingly.
-        </p>
-      </n-flex>
-    </n-space>
-  </n-card>
 
 </template>
 
@@ -287,5 +292,13 @@ export default defineComponent({
   color: #A8A8A8;
   text-align:justify;
   font-style: italic;
+}
+
+.guy {
+    margin-right: 30px;
+}
+
+.woman {
+    margin-top: 400px;
 }
 </style>
