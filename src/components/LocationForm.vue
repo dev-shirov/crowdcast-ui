@@ -77,71 +77,79 @@ export default defineComponent({
       selectOptions: ref([
         {
           label: 'January',
-          value: '1'
+          value: 1
         },
         {
           label: 'February',
-          value: '2'
+          value: 2
         },
         {
           label: 'March',
-          value: '3'
+          value: 3
         },
         {
           label: 'April',
-          value: '4'
+          value: 4
         },
         {
           label: 'May',
-          value: '5'
+          value: 5
         },
         {
           label: 'June',
-          value: '6'
+          value: 6
         },
         {
           label: 'July',
-          value: '7'
+          value: 7
         },
         {
           label: 'August',
-          value: '8'
+          value: 8
         },
         {
           label: 'September',
-          value: '9'
+          value: 9
         },
         {
           label: 'October',
-          value: '10'
+          value: 10
         },
         {
           label: 'November',
-          value: '11'
+          value: 11
         },
         {
           label: 'December',
-          value: '12'
+          value: 12
         },
       ]),
       activityOptions: ref([
         {
           label: 'Hiking',
-          value: 1
+          value: 'Hiking'
         },
         {
           label: 'Surfing',
-          value: 2
+          value: 'Surfing'
         },
         {
           label: 'Staycation',
-          value: 3
+          value: 'Staycation'
         },
         {
           label: 'Nightlife',
-          value: 4
+          value: 'Nightlife'
         },
       ])
+    }
+  },
+  methods: {
+    selectMonth(value) {
+      this.locationStore.selectedMonth = value
+    },
+    selectActivity(value) {
+      this.locationStore.selectedActivity = value
     }
   }
 })
@@ -192,7 +200,7 @@ export default defineComponent({
         <p class="loc-question">What month in 2025?</p>
       </n-flex>
       <n-input-group :style="{padding:'0px 0px 25px 0px'}">
-        <n-select placeholder="Select month" :style="{ width: '100%' }" :options="selectOptions" size="large"/>
+        <n-select placeholder="Select month" :style="{ width: '100%' }" :options="selectOptions" size="large" @change="selectMonth"/>
       </n-input-group>
 
       <n-flex class="loc-label">
@@ -200,7 +208,7 @@ export default defineComponent({
         <p class="loc-question">What are you planning to do?</p>
       </n-flex>
       <n-input-group>
-        <n-select placeholder="Select activity" :style="{ width: '100%' }" :options="activityOptions" size="large"/>
+        <n-select placeholder="Select activity" :style="{ width: '100%' }" :options="activityOptions" size="large" @change="selectActivity"/>
       </n-input-group>
 
       <n-input-group class="btn-grp" :style="{ paddingTop: '5%' }">

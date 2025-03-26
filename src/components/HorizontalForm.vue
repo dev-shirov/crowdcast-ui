@@ -34,6 +34,9 @@
             const locationStore = useLocationStore()
             const locationService = useLocationService()
             const checkedValueRef = ref<string | null>(null)
+            const activityMonth = ref(locationStore.selectedMonth)
+            const activityName = ref(locationStore.selectedActivity)
+            console.log(locationStore.selectedActivity)
             
             switch(locationStore.name) {
               case 'Boracay Island, Philippines':
@@ -52,8 +55,8 @@
                 locationStore,
                 locationService,
                 checkedValue: checkedValueRef,
-                activityMonth: 0,
-                activityName: '',
+                activityMonth,
+                activityName,
                 handleChange(e: Event) {
                   checkedValueRef.value = (e.target as HTMLInputElement).value
                   if (checkedValueRef.value === 'Boracay Island') {
@@ -92,80 +95,79 @@
                 selectOptions: ref([
                     {
                         label: 'January',
-                        value: '1'
+                        value: 1
                     },
                     {
                         label: 'February',
-                        value: '2'
+                        value: 2
                     },
                     {
                         label: 'March',
-                        value: '3'
+                        value: 3
                     },
                     {
                         label: 'April',
-                        value: '4'
+                        value: 4
                     },
                     {
                         label: 'May',
-                        value: '5'
+                        value: 5
                     },
                     {
                         label: 'June',
-                        value: '6'
+                        value: 6
                     },
                     {
                         label: 'July',
-                        value: '7'
+                        value: 7
                     },
                     {
                         label: 'August',
-                        value: '8'
+                        value: 8
                     },
                     {
                         label: 'September',
-                        value: '9'
+                        value: 9
                     },
                     {
                         label: 'October',
-                        value: '10'
+                        value: 10
                     },
                     {
                         label: 'November',
-                        value: '11'
+                        value: 11
                     },
                     {
                         label: 'December',
-                        value: '12'
+                        value: 12
                     },
                 ]),
                 activityOptions: ref([
                     {
                         label: 'Hiking',
-                        value: 1
+                        value: 'Hiking'
                     },
                     {
                         label: 'Surfing',
-                        value: 2
+                        value: 'Surfing'
                     },
                     {
                         label: 'Staycation',
-                        value: 3
+                        value: 'Staycation'
                     },
                     {
                         label: 'Nightlife',
-                        value: 4
+                        value: 'Nightlife'
                     },
                 ])
             }
         },
         methods: {
           forecast() {
-            console.log(this.activityMonth)
-            console.log(this.activityName)
-            this.locationService.recommend(this.checkedValue, 1, 'Hiking')
+            this.locationService.recommend(this.checkedValue, this.activityMonth, this.activityName)
             .then((response) => {
               console.log(response)
+              this.locationStore.recommendation = response.recommendation
             })
           }
         }
@@ -218,7 +220,7 @@
 
                     <n-space>
                         <n-input-group :style="{padding:'0px 0px 25px 0px'}">
-                            <n-select placeholder="Select month" :style="{ width: '280px' }" :options="selectOptions" size="large" v-model="activityMonth"/>
+                            <n-select placeholder="Select month" :style="{ width: '280px' }" :options="selectOptions" size="large" v-model:value="activityMonth"/>
                         </n-input-group>
                     </n-space>
                 </n-gi>
@@ -229,7 +231,7 @@
                     </n-flex>
 
                     <n-input-group>
-                        <n-select placeholder="Select activity" :style="{ width: '100%' }" :options="activityOptions" size="large" v-model="activityName"/>
+                        <n-select placeholder="Select activity" :style="{ width: '100%' }" :options="activityOptions" size="large" v-model:value="activityName"/>
                     </n-input-group>
                 </n-gi>
 
